@@ -1,0 +1,10 @@
+# This is the docker config used for production
+# Use it like 'docker-compose -f docker-compose.yml -f docker-compose.prod.yml -d'
+version: '3'
+services:
+  asp:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/Asp.dockerfile
+    ports:
+      - '5000:5000'
