@@ -6,27 +6,35 @@ use scaley_abilities
 
 CREATE TABLE users(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    balance INT NOT NULL DEFAULT 0,
-    username VARCHAR(10) NOT NULL UNIQUE
+    balance DECIMAL(15,2) NOT NULL DEFAULT 0,
+    userid VARCHAR(30) NOT NULL UNIQUE
 );
 
 CREATE TABLE triggers(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL REFERENCES users(id),
-    command VARCHAR(10) NOT NULL,
+    usernum INT NOT NULL REFERENCES users(id),
+    command VARCHAR(20) NOT NULL,
+    stocksymbol CHAR(4) NOT NULL REFERENCES stocks(stocksymbol),
     price INT NOT NULL CHECK (price > 0),
-    quantity INT NOT NULL DEFAULT 0
+    quantity INT NOT NULL DEFAULT 0,
+    triggertime DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE transactions(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(10) NOT NULL,
-    stock_id VARCHAR(10) NOT NULL REFERENCES stocks(stock_id)
+    usernum INT NOT NULL REFERENCES users(id),
+    userbalance DECIMAL(15,2) NOT NULL REFERENCES users(balance),
+    stocksymbol CHAR(4) NOT NULL REFERENCES stocks(stocksymbol),
+    command VARCHAR(20) NOT NULL,
+    balancechange DECIMAL(15,2),
+    stockamount INT REFERENCES triggers(quantity),
+    pendingflag BOOLEAN NOT NULL DEFAULT 0,
+    transactiontime DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE stocks(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    user_id INT REFERENCES users(id),
-    stock_id VARCHAR(10),
-    amount INT DEFAULT 0
+    usernum INT REFERENCES users(id),
+    stocksymbol CHAR(4),
+    amount INT DEFAULT 0 CHECK(amount >= 0)
 );
