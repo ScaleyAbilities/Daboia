@@ -7,12 +7,12 @@ use scaley_abilities
 CREATE TABLE users(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     balance DECIMAL(15,2) NOT NULL DEFAULT 0,
-    userid VARCHAR(30) NOT NULL UNIQUE
+    userid VARCHAR(30) NOT NULL UNIQUE PRIMARY KEY
 );
 
 CREATE TABLE triggers(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    usernum INT NOT NULL REFERENCES users(id),
+    userid VARCHAR(30) NOT NULL REFERENCES users(userid),
     command VARCHAR(20) NOT NULL,
     stocksymbol CHAR(4) NOT NULL REFERENCES stocks(stocksymbol),
     price INT NOT NULL CHECK (price > 0),
@@ -22,7 +22,7 @@ CREATE TABLE triggers(
 
 CREATE TABLE transactions(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    usernum INT NOT NULL REFERENCES users(id),
+    userid VARCHAR(30) NOT NULL REFERENCES users(userid),
     userbalance DECIMAL(15,2) NOT NULL REFERENCES users(balance),
     stocksymbol CHAR(4) NOT NULL REFERENCES stocks(stocksymbol),
     command VARCHAR(20) NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE transactions(
 
 CREATE TABLE stocks(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    usernum INT REFERENCES users(id),
-    stocksymbol CHAR(4),
+    userid VARCHAR(30) NOT NULL REFERENCES users(userid),
+    stocksymbol CHAR(4) NOT NULL,
     amount INT DEFAULT 0 CHECK(amount >= 0)
 );
