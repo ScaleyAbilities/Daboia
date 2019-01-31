@@ -13,3 +13,14 @@ services:
       MYSQL_RANDOM_ROOT_PASSWORD: 'true'
       MYSQL_USER: 'scaley'
       MYSQL_PASSWORD: 'abilities'
+
+  asp:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/Asp.dockerfile
+    depends_on:
+      - 'rabbit'
+    environment:
+      RABBIT_HOST: 'rabbit'
+    ports:
+      - '80:80'
