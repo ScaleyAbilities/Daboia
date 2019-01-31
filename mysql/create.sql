@@ -7,7 +7,7 @@ use scaley_abilities
 CREATE TABLE users(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     balance DECIMAL(15,2) NOT NULL DEFAULT 0,
-    userid VARCHAR(30) NOT NULL UNIQUE PRIMARY KEY
+    userid VARCHAR(30) NOT NULL UNIQUE,
 );
 
 CREATE TABLE triggers(
