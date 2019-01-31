@@ -10,30 +10,33 @@ CREATE TABLE users(
     username VARCHAR(30) NOT NULL UNIQUE
 );
 
+CREATE TABLE stocks(
+    userid INT NOT NULL,
+    stocksymbol CHAR(4) NOT NULL,
+    amount INT DEFAULT 0,
+    PRIMARY KEY (userid, stocksymbol),
+    FOREIGN KEY (userid) REFERENCES users(id)
+);
+
 CREATE TABLE triggers(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    userid VARCHAR(30) NOT NULL REFERENCES users(id),
+    userid INT NOT NULL,
     command VARCHAR(20) NOT NULL,
-    stocksymbol CHAR(4) NOT NULL REFERENCES stocks(stocksymbol),
-    price INT NOT NULL CHECK (price > 0),
+    stocksymbol CHAR(4) NOT NULL,
+    price INT NOT NULL,
     quantity INT NOT NULL DEFAULT 0,
-    triggertime DATETIME DEFAULT CURRENT_TIMESTAMP
+    triggertime DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (userid) REFERENCES users(id)
 );
 
 CREATE TABLE transactions(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    userid VARCHAR(30) NOT NULL REFERENCES users(id),
-    stocksymbol CHAR(4) NOT NULL REFERENCES stocks(stocksymbol),
+    userid INT NOT NULL,
+    stocksymbol CHAR(4) NOT NULL,
     command VARCHAR(20) NOT NULL,
     balancechange DECIMAL(15,2),
-    stockamount INT REFERENCES triggers(quantity),
+    stockamount INT,
     pendingflag BOOLEAN NOT NULL DEFAULT 0,
-    transactiontime DATETIME DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE stocks(
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    userid VARCHAR(30) NOT NULL REFERENCES users(id),
-    stocksymbol CHAR(4) NOT NULL,
-    amount INT DEFAULT 0 CHECK(amount >= 0)
+    transactiontime DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (userid) REFERENCES users(id)
 );
