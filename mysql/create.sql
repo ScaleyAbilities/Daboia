@@ -12,7 +12,7 @@ CREATE TABLE users(
 
 CREATE TABLE triggers(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    userid VARCHAR(30) NOT NULL REFERENCES users(userid),
+    userid VARCHAR(30) NOT NULL REFERENCES users(id),
     command VARCHAR(20) NOT NULL,
     stocksymbol CHAR(4) NOT NULL REFERENCES stocks(stocksymbol),
     price INT NOT NULL CHECK (price > 0),
@@ -22,7 +22,7 @@ CREATE TABLE triggers(
 
 CREATE TABLE transactions(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    userid VARCHAR(30) NOT NULL REFERENCES users(userid),
+    userid VARCHAR(30) NOT NULL REFERENCES users(id),
     stocksymbol CHAR(4) NOT NULL REFERENCES stocks(stocksymbol),
     command VARCHAR(20) NOT NULL,
     balancechange DECIMAL(15,2),
@@ -33,7 +33,7 @@ CREATE TABLE transactions(
 
 CREATE TABLE stocks(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    userid VARCHAR(30) NOT NULL REFERENCES users(userid),
+    userid VARCHAR(30) NOT NULL REFERENCES users(id),
     stocksymbol CHAR(4) NOT NULL,
     amount INT DEFAULT 0 CHECK(amount >= 0)
 );
