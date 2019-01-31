@@ -23,7 +23,6 @@ CREATE TABLE triggers(
 CREATE TABLE transactions(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     userid VARCHAR(30) NOT NULL REFERENCES users(userid),
-    userbalance DECIMAL(15,2) NOT NULL REFERENCES users(balance),
     stocksymbol CHAR(4) NOT NULL REFERENCES stocks(stocksymbol),
     command VARCHAR(20) NOT NULL,
     balancechange DECIMAL(15,2),
