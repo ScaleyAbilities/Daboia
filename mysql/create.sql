@@ -40,3 +40,21 @@ CREATE TABLE transactions(
     transactiontime DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (userid) REFERENCES users(id)
 );
+
+CREATE TABLE logs(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+    server VARCHAR(10),
+    transactionid INT,
+    command VARCHAR(20),
+    message TEXT,
+    price DECIMAL(15,2),
+    stocksymbol CHAR(4) NOT NULL,
+    userid INT,
+    filename TEXT,
+    funds DECIMAL(15,2),
+    quoteservertime DATETIME,
+    cryptokey TEXT,
+    FOREIGN KEY (userid) REFERENCES users(id),
+    FOREIGN KEY (transactionNum) REFERENCES transactions(id)
+);
