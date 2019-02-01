@@ -21,7 +21,7 @@ CREATE TABLE stocks(
 CREATE TABLE transactions(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     userid INT NOT NULL,
-    stocksymbol CHAR(4) NOT NULL,
+    stocksymbol CHAR(4),
     command VARCHAR(20) NOT NULL,
     balancechange DECIMAL(15,2),
     stockamount INT,
@@ -36,15 +36,9 @@ CREATE TABLE logs(
     timestamp DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     server VARCHAR(10) NOT NULL,
     transactionid INT,
-    command VARCHAR(20),
     message TEXT,
-    price DECIMAL(15,2),
-    stocksymbol CHAR(4),
-    userid INT,
     filename TEXT,
-    funds DECIMAL(15,2),
     quoteservertime DATETIME,
     cryptokey TEXT,
-    FOREIGN KEY (userid) REFERENCES users(id),
     FOREIGN KEY (transactionid) REFERENCES transactions(id)
 );
