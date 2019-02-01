@@ -26,7 +26,7 @@ CREATE TABLE transactions(
     balancechange DECIMAL(15,2),
     stockamount INT,
     stockprice DECIMAL(15,2),
-    type ENUM('completed', 'pending', 'trigger') NOT NULL,
+    type ENUM('completed', 'pending', 'trigger', 'canceled') NOT NULL,
     transactiontime DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (userid) REFERENCES users(id)
 );
