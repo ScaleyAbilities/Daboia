@@ -1,16 +1,13 @@
-#
-# TABLE STRUCTURE FOR: stocks
-#
 
-DROP TABLE IF EXISTS `stocks`;
+DROP TABLE IF EXISTS stocks;
 
-CREATE TABLE `stocks` (
-  `userid` int(11) NOT NULL,
-  `stocksymbol` char(4) COLLATE utf8_unicode_ci NOT NULL,
-  `amount` int(11) DEFAULT 0,
-  PRIMARY KEY (`userid`,`stocksymbol`),
-  CONSTRAINT `stocks_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+CREATE TABLE stocks(
+    userid INT NOT NULL,
+    stocksymbol CHAR(4) NOT NULL,
+    amount INT DEFAULT 0,
+    PRIMARY KEY (userid, stocksymbol),
+    FOREIGN KEY (userid) REFERENCES users(id)
+);
 
 INSERT INTO `stocks` (`userid`, `stocksymbol`, `amount`) VALUES (1, 'cons', 969);
 INSERT INTO `stocks` (`userid`, `stocksymbol`, `amount`) VALUES (1, 'elig', 546);

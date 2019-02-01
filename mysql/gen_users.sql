@@ -1,16 +1,11 @@
-#
-# TABLE STRUCTURE FOR: users
-#
 
-DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS users;
 
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `balance` decimal(15,2) NOT NULL DEFAULT 0.00,
-  `username` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+CREATE TABLE users(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    balance DECIMAL(15,2) NOT NULL DEFAULT 0,
+    username VARCHAR(30) NOT NULL UNIQUE
+);
 
 INSERT INTO `users` (`id`, `balance`, `username`) VALUES (1, '485.52', 'mitchell.wyman');
 INSERT INTO `users` (`id`, `balance`, `username`) VALUES (2, '46.14', 'lily.kuhn');

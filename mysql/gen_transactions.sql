@@ -1,23 +1,18 @@
-#
-# TABLE STRUCTURE FOR: transactions
-#
 
-DROP TABLE IF EXISTS `transactions`;
+DROP TABLE IF EXISTS transactions;
 
-CREATE TABLE `transactions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `userid` int(11) NOT NULL,
-  `stocksymbol` char(4) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `command` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `balancechange` decimal(15,2) DEFAULT NULL,
-  `stockamount` int(11) DEFAULT NULL,
-  `stockprice` decimal(15,2) DEFAULT NULL,
-  `type` enum('completed','pending','trigger','canceled') COLLATE utf8_unicode_ci NOT NULL,
-  `transactiontime` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`id`),
-  KEY `userid` (`userid`),
-  CONSTRAINT `transactions_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1401 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+CREATE TABLE transactions(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    userid INT NOT NULL,
+    stocksymbol CHAR(4),
+    command VARCHAR(20) NOT NULL,
+    balancechange DECIMAL(15,2),
+    stockamount INT,
+    stockprice DECIMAL(15,2),
+    type ENUM('completed', 'pending', 'trigger', 'canceled') NOT NULL,
+    transactiontime DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (userid) REFERENCES users(id)
+);
 
 INSERT INTO `transactions` (`id`, `userid`, `stocksymbol`, `command`, `balancechange`, `stockamount`, `stockprice`, `type`, `transactiontime`) VALUES (1301, 2, 'quia', 'buy', '70.05', 0, '2.97', 'canceled', '1980-11-15 02:42:29');
 INSERT INTO `transactions` (`id`, `userid`, `stocksymbol`, `command`, `balancechange`, `stockamount`, `stockprice`, `type`, `transactiontime`) VALUES (1302, 8, 'inci', 'buy', '2340549.47', 2, '10853410.47', 'trigger', '1974-06-04 03:57:42');
