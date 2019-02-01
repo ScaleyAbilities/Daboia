@@ -25,6 +25,7 @@ CREATE TABLE transactions(
     command VARCHAR(20) NOT NULL,
     balancechange DECIMAL(15,2),
     stockamount INT,
+    stockprice DECIMAL(15,2),
     type ENUM('completed', 'pending', 'trigger') NOT NULL,
     transactiontime DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (userid) REFERENCES users(id)
