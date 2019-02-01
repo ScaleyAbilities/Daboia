@@ -18,17 +18,6 @@ CREATE TABLE stocks(
     FOREIGN KEY (userid) REFERENCES users(id)
 );
 
-CREATE TABLE triggers(
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    userid INT NOT NULL,
-    command VARCHAR(20) NOT NULL,
-    stocksymbol CHAR(4) NOT NULL,
-    price INT NOT NULL,
-    quantity INT NOT NULL DEFAULT 0,
-    triggertime DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (userid) REFERENCES users(id)
-);
-
 CREATE TABLE transactions(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     userid INT NOT NULL,
@@ -36,7 +25,7 @@ CREATE TABLE transactions(
     command VARCHAR(20) NOT NULL,
     balancechange DECIMAL(15,2),
     stockamount INT,
-    pendingflag BOOLEAN NOT NULL DEFAULT 0,
+    type ENUM('completed', 'pending', 'trigger') NOT NULL,
     transactiontime DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (userid) REFERENCES users(id)
 );
