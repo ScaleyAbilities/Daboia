@@ -32,18 +32,19 @@ CREATE TABLE transactions(
 
 CREATE TABLE logs(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-    server VARCHAR(10),
+    logtype ENUM('command', 'quote', 'transaction', 'system', 'error', 'debug') NOT NULL,
+    timestamp DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    server VARCHAR(10) NOT NULL,
     transactionid INT,
     command VARCHAR(20),
     message TEXT,
     price DECIMAL(15,2),
-    stocksymbol CHAR(4) NOT NULL,
+    stocksymbol CHAR(4),
     userid INT,
     filename TEXT,
     funds DECIMAL(15,2),
     quoteservertime DATETIME,
     cryptokey TEXT,
     FOREIGN KEY (userid) REFERENCES users(id),
-    FOREIGN KEY (transactionNum) REFERENCES transactions(id)
+    FOREIGN KEY (transactionid) REFERENCES transactions(id)
 );
