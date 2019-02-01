@@ -27,14 +27,14 @@ CREATE TABLE transactions(
     stockamount INT,
     stockprice DECIMAL(15,2),
     type ENUM('completed', 'pending', 'trigger') NOT NULL,
-    transactiontime DATETIME DEFAULT CURRENT_TIMESTAMP,
+    transactiontime DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (userid) REFERENCES users(id)
 );
 
 CREATE TABLE logs(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     logtype ENUM('command', 'quote', 'transaction', 'system', 'error', 'debug') NOT NULL,
-    timestamp DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    timestamp DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     server VARCHAR(10) NOT NULL,
     transactionid INT,
     message TEXT,
