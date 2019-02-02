@@ -26,9 +26,14 @@ CREATE TABLE transactions(
     balancechange DECIMAL(15,2),
     stockamount INT,
     stockprice DECIMAL(15,2),
-    type ENUM('completed', 'pending', 'trigger', 'canceled') NOT NULL,
+    type ENUM('completed', 'pending', 'trigger') NOT NULL,
     transactiontime DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (userid) REFERENCES users(id)
+);
+
+CREATE TABLE logs_work(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	created DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE logs(
@@ -36,10 +41,15 @@ CREATE TABLE logs(
     logtype ENUM('command', 'quote', 'transaction', 'system', 'error', 'debug') NOT NULL,
     timestamp DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     server VARCHAR(10) NOT NULL,
-    transactionid INT,
+    workid INT NOT NULL,
+    userid INT,
+    command VARCHAR(20),
+    amount DECIMAL(15,2),
+    stocksymbol CHAR(4),
     message TEXT,
     filename TEXT,
     quoteservertime DATETIME,
     cryptokey TEXT,
-    FOREIGN KEY (transactionid) REFERENCES transactions(id)
+    FOREIGN KEY (workid) REFERENCES logs_work(id),
+    FOREIGN KEY (userid) REFERENCES users(id)
 );
