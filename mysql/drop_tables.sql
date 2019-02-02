@@ -4,5 +4,6 @@ use scaley_abilities
 
 DROP TABLE stocks;
 DROP TABLE transactions;
-DROP TABLE triggers;
 DROP TABLE users;
+DROP TABLE logs;
+DROP TABLE logs_work;

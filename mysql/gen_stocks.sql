@@ -2,7 +2,7 @@
 DROP TABLE IF EXISTS stocks;
 
 CREATE TABLE stocks(
-    userid INT NOT NULL,
+    userid INT UNSIGNED NOT NULL,
     stocksymbol CHAR(4) NOT NULL,
     amount INT DEFAULT 0,
     PRIMARY KEY (userid, stocksymbol),

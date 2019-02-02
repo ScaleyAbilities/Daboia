@@ -2,7 +2,7 @@
 DROP TABLE IF EXISTS transactions;
 
 CREATE TABLE transactions(
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     userid INT NOT NULL,
     stocksymbol CHAR(4),
     command VARCHAR(20) NOT NULL,

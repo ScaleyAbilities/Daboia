@@ -5,13 +5,13 @@ use scaley_abilities
 -- -> source mysql/create.sql
 
 CREATE TABLE users(
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     balance DECIMAL(15,2) NOT NULL DEFAULT 0,
     username VARCHAR(30) NOT NULL UNIQUE
 );
 
 CREATE TABLE stocks(
-    userid INT NOT NULL,
+    userid INT UNSIGNED NOT NULL,
     stocksymbol CHAR(4) NOT NULL,
     amount INT DEFAULT 0,
     PRIMARY KEY (userid, stocksymbol),
@@ -19,8 +19,8 @@ CREATE TABLE stocks(
 );
 
 CREATE TABLE transactions(
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    userid INT NOT NULL,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    userid INT UNSIGNED NOT NULL,
     stocksymbol CHAR(4),
     command VARCHAR(20) NOT NULL,
     balancechange DECIMAL(15,2),
@@ -32,17 +32,17 @@ CREATE TABLE transactions(
 );
 
 CREATE TABLE logs_work(
-	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	created DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE logs(
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     logtype ENUM('command', 'quote', 'transaction', 'system', 'error', 'debug') NOT NULL,
     timestamp DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     server VARCHAR(10) NOT NULL,
-    workid INT NOT NULL,
-    userid INT,
+    workid INT UNSIGNED NOT NULL,
+    userid INT UNSIGNED,
     command VARCHAR(20),
     amount DECIMAL(15,2),
     stocksymbol CHAR(4),
