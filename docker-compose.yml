@@ -24,3 +24,14 @@ services:
       RABBIT_HOST: 'rabbit'
     ports:
       - '80:80'
+
+  titanoboa:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/Titanoboa.dockerfile
+    depends_on:
+      - 'rabbit'
+      - 'database'
+    environment:
+      RABBIT_HOST: 'rabbit'
+      SQL_HOST: 'database'
