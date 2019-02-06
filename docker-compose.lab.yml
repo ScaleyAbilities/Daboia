@@ -2,4 +2,10 @@
 # Use it like 'docker-compose -f docker-compose.yml -f docker-compose.prod.yml -d'
 version: '3'
 services:
-  
+  asp:
+    build:
+      dockerfile: ./dockerfiles/Asp.Lab.dockerfile
+
+  titanoboa:
+    build:
+      dockerfile: ./dockerfiles/Titanoboa.Lab.dockerfile
