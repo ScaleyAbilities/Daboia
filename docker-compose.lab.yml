@@ -1,5 +1,5 @@
-# This is the docker config used for production
-# Use it like 'docker-compose -f docker-compose.yml -f docker-compose.prod.yml -d'
+# This is the docker config used for the lab
+# Use it like 'docker-compose -f docker-compose.yml -f docker-compose.lab.yml up [-d] [services]'
 version: '3'
 services:
   asp:

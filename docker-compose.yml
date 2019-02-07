@@ -5,6 +5,9 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: scaley
       RABBITMQ_DEFAULT_PASS: abilities
+    ports:
+      - '5672:5672'
+      - '15672:15672'
 
   database:
     image: 'mariadb:10.4'
@@ -13,6 +16,8 @@ services:
       MYSQL_RANDOM_ROOT_PASSWORD: 'true'
       MYSQL_USER: 'scaley'
       MYSQL_PASSWORD: 'abilities'
+    ports:
+      - '3306:3306'
 
   asp:
     build:
