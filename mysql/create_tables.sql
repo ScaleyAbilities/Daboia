@@ -36,7 +36,8 @@ CREATE TABLE transactions(
     stockprice DECIMAL(15,2),
     type ENUM('completed', 'pending', 'trigger') NOT NULL,
     transactiontime DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (userid) REFERENCES users(id)
+    FOREIGN KEY (userid) REFERENCES users(id),
+    INDEX txn_time (transactiontime)
 );
 
 CREATE TABLE logs_work(
