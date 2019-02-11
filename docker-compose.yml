@@ -13,7 +13,7 @@ services:
     image: 'mariadb:10.4'
     environment:
       MYSQL_DATABASE: 'scaley_abilities'
-      MYSQL_RANDOM_ROOT_PASSWORD: 'true'
+      MYSQL_ROOT_PASSWORD: 'scaleyabilities'
       MYSQL_USER: 'scaley'
       MYSQL_PASSWORD: 'abilities'
     ports:
