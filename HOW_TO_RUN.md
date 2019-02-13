@@ -5,8 +5,8 @@
 1. First, make sure you pull Daboia and Woma so you have the latest versions of both
 1. Open a terminal in Daboia folder
 1. Run `docker-compose -f docker-compose.yml -f docker-compose.lab.yml up -d rabbit database`
-1. This will start Rabbit (<http://localhost:15672/>), Asp (<http://localhost:80/>), and MySQL
-1. Now we need to set up the database, run `mysql -h 127.0.0.1 -u scaley -p` which will prompt for the password (abilities) then open a mysql console
+1. This will start Rabbit (<http://localhost:15672/>) and MySQL
+1. Now we need to set up the database, run `mysql -h 127.0.0.1 -u scaley -p` which will prompt for the password (abilities) and open a mysql console
 1. In the mysql console, run `source mysql/create_tables.sql`  
    **NOTE:** you will have to run this before every run of Woma
 1. Now build the latest version of Asp using `docker-compose -f docker-compose.yml -f docker-compose.lab.yml build --no-cache asp`
