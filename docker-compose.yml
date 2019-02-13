@@ -10,14 +10,13 @@ services:
       - '15672:15672'
 
   database:
-    image: 'mariadb:10.4'
+    image: 'postgres:11.1'
     environment:
-      MYSQL_DATABASE: 'scaley_abilities'
-      MYSQL_ROOT_PASSWORD: 'scaleyabilities'
-      MYSQL_USER: 'scaley'
-      MYSQL_PASSWORD: 'abilities'
+      POSTGRES_DB: 'scaley_abilities'
+      POSTGRES_USER: 'scaley'
+      POSTGRES_PASSWORD: 'abilities'
     ports:
-      - '3306:3306'
+      - '5432:5432'
 
   asp:
     build:
