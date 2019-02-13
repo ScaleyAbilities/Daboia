@@ -11,3 +11,4 @@ services:
       dockerfile: ./dockerfiles/Titanoboa.Lab.dockerfile
     environment:
       USING_QUOTE_SRV: 'TRUE'
+      SERVER_NAME: 'TIT'
