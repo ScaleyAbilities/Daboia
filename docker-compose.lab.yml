@@ -9,3 +9,5 @@ services:
   titanoboa:
     build:
       dockerfile: ./dockerfiles/Titanoboa.Lab.dockerfile
+    environment:
+      USING_QUOTE_SRV: 'TRUE'
