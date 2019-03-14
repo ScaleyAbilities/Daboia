@@ -18,6 +18,14 @@ services:
     ports:
       - '5432:5432'
 
+  database_admin:
+    image: 'dpage/pgadmin4'
+    environment:
+      PGADMIN_DEFAULT_EMAIL: 'scaley@abilities.com'
+      PGADMIN_DEFAULT_PASSWORD: 'abilities'
+    ports:
+      - '15432:80'
+  
   asp:
     build:
       context: .

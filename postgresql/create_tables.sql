@@ -26,7 +26,7 @@ CREATE TYPE txn_type AS ENUM('completed', 'pending', 'trigger');
 CREATE TABLE transactions(
     id SERIAL PRIMARY KEY,
     userid INTEGER NOT NULL,
-    stocksymbol CHAR(4),
+    stocksymbol VARCHAR(4),
     command VARCHAR(20) NOT NULL,
     balancechange DECIMAL(15,2),
     stockamount INT,
