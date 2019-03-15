@@ -8,4 +8,4 @@ FROM microsoft/dotnet:2.2-runtime
 WORKDIR /app
 COPY --from=build-env /app/out .
 
-ENTRYPOINT [ "dotnet", "Titanoboa.dll", "--no-input" ]
+ENTRYPOINT [ "dotnet", "Titanoboa.dll"]
