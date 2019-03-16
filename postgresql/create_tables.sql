@@ -57,7 +57,7 @@ CREATE TABLE logs(
     stocksymbol CHAR(4),
     message TEXT,
     filename TEXT,
-    quoteservertime TIMESTAMP,
+    quoteservertime TEXT,
     cryptokey TEXT,
     FOREIGN KEY (workid) REFERENCES logs_work(id)
 );
