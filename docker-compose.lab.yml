@@ -12,3 +12,8 @@ services:
     environment:
       USING_QUOTE_SRV: 'TRUE'
       SERVER_NAME: 'TIT'
+
+  twig:
+    build:
+      dockerfile: ./dockerfiles/Twig.Lab.dockerfile
+      

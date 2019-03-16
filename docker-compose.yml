@@ -47,3 +47,12 @@ services:
     environment:
       RABBIT_HOST: 'rabbit'
       SQL_HOST: 'database'
+
+  twig:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/Twig.dockerfile
+    depends_on:
+      - 'rabbit'
+    environment:
+      RABBIT_HOST: 'rabbit'
