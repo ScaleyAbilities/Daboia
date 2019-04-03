@@ -30,10 +30,9 @@ services:
     build:
       context: .
       dockerfile: ./dockerfiles/Asp.dockerfile
-    depends_on:
-      - 'rabbit'
     environment:
       RABBIT_HOST: 'rabbit'
+      INSTANCES: '1'
     ports:
       - '80:80'
 
@@ -42,17 +41,31 @@ services:
       context: .
       dockerfile: ./dockerfiles/Titanoboa.dockerfile
     depends_on:
-      - 'rabbit'
       - 'database'
     environment:
       RABBIT_HOST: 'rabbit'
       SQL_HOST: 'database'
+      QUOTE_API: 'cobra'
+      INSTANCE: '1'
 
   twig:
     build:
       context: .
       dockerfile: ./dockerfiles/Twig.dockerfile
-    depends_on:
-      - 'rabbit'
+    environment:
+      RABBIT_HOST: 'rabbit'
+      QUOTE_API: 'cobra'
+
+  cobra:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/Twig.dockerfile
+    environment:
+      RABBIT_HOST: 'rabbit'
+
+  lora:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/Lora.dockerfile
     environment:
       RABBIT_HOST: 'rabbit'

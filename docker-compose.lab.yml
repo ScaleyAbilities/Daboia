@@ -5,6 +5,9 @@ services:
   asp:
     build:
       dockerfile: ./dockerfiles/Asp.Lab.dockerfile
+    environment:
+      RABBIT_HOST: '192.168.1.1'
+      INSTANCES: '1'
 
   titanoboa:
     build:
@@ -12,8 +15,30 @@ services:
     environment:
       USING_QUOTE_SRV: 'TRUE'
       SERVER_NAME: 'TIT'
+      RABBIT_HOST: '192.168.1.1'
+      SQL_HOST: '192.168.1.1'
+      QUOTE_API: '192.168.1.1'
+      INSTANCE: '1'
 
   twig:
     build:
       dockerfile: ./dockerfiles/Twig.Lab.dockerfile
+    environment:
+      RABBIT_HOST: '192.168.1.1'
+      QUOTE_API: '192.168.1.1'
+    
+  cobra:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/Cobra.Lab.dockerfile
+    environment:
+      USING_QUOTE_SRV: 'TRUE'
+      RABBIT_HOST: '192.168.1.1'
+
+  lora:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/Lora.Lab.dockerfile
+    environment:
+      RABBIT_HOST: '192.168.1.1'
       
