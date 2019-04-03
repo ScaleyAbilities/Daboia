@@ -14,4 +14,6 @@ FROM microsoft/dotnet:2.2-runtime
 WORKDIR /app
 COPY --from=build-env /app/out .
 
-ENTRYPOINT [ "dotnet", "Lora.dll"]
+WORKDIR /app/logs
+
+ENTRYPOINT [ "dotnet", "../Lora.dll"]

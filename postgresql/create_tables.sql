@@ -1,11 +1,8 @@
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS transactions CASCADE;
 DROP TABLE IF EXISTS stocks CASCADE;
-DROP TABLE IF EXISTS logs CASCADE;
-DROP TABLE IF EXISTS logs_work CASCADE;
 
 DROP TYPE IF EXISTS txn_type;
-DROP TYPE IF EXISTS log_type;
 
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
@@ -37,27 +34,3 @@ CREATE TABLE transactions(
 );
 
 CREATE INDEX txn_time ON transactions(transactiontime);
-
-CREATE TABLE logs_work(
-	id SERIAL PRIMARY KEY,
-	created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TYPE log_type AS ENUM('command', 'quote', 'transaction', 'system', 'error', 'debug');
-
-CREATE TABLE logs(
-    id SERIAL PRIMARY KEY,
-    logtype log_type NOT NULL,
-    timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    server VARCHAR(10) NOT NULL,
-    workid INTEGER NOT NULL,
-    userid INTEGER,
-    command VARCHAR(20),
-    amount DECIMAL(15,2),
-    stocksymbol CHAR(4),
-    message TEXT,
-    filename TEXT,
-    quoteservertime TEXT,
-    cryptokey TEXT,
-    FOREIGN KEY (workid) REFERENCES logs_work(id)
-);

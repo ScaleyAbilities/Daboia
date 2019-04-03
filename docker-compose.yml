@@ -71,3 +71,5 @@ services:
       dockerfile: ./dockerfiles/Lora.dockerfile
     environment:
       RABBIT_HOST: 'rabbit'
+    volumes:
+      - './logs:/app/logs'
