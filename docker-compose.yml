@@ -59,9 +59,11 @@ services:
   cobra:
     build:
       context: .
-      dockerfile: ./dockerfiles/Twig.dockerfile
+      dockerfile: ./dockerfiles/Cobra.dockerfile
     environment:
       RABBIT_HOST: 'rabbit'
+    ports:
+      - '5588:5588'
 
   lora:
     build:
