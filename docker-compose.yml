@@ -45,8 +45,7 @@ services:
     environment:
       RABBIT_HOST: 'rabbit'
       SQL_HOST: 'database'
-      QUOTE_API: 'cobra'
-      INSTANCE: '1'
+      QUOTE_API: 'http://cobra:5588'
 
   twig:
     build:
@@ -54,7 +53,7 @@ services:
       dockerfile: ./dockerfiles/Twig.dockerfile
     environment:
       RABBIT_HOST: 'rabbit'
-      QUOTE_API: 'cobra'
+      QUOTE_API: 'http://cobra:5588'
 
   cobra:
     build:
@@ -73,3 +72,10 @@ services:
       RABBIT_HOST: 'rabbit'
     volumes:
       - './logs:/app/logs'
+
+  woma:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/Woma.dockerfile
+    environment:
+      RABBIT_HOST: 'rabbit'

@@ -17,15 +17,14 @@ services:
       SERVER_NAME: 'TIT'
       RABBIT_HOST: '192.168.1.1'
       SQL_HOST: '192.168.1.1'
-      QUOTE_API: '192.168.1.1'
-      INSTANCE: '1'
+      QUOTE_API: 'http://192.168.1.1:5588'
 
   twig:
     build:
       dockerfile: ./dockerfiles/Twig.Lab.dockerfile
     environment:
       RABBIT_HOST: '192.168.1.1'
-      QUOTE_API: '192.168.1.1'
+      QUOTE_API: 'http://192.168.1.1:5588'
     
   cobra:
     build:
@@ -39,6 +38,13 @@ services:
     build:
       context: .
       dockerfile: ./dockerfiles/Lora.Lab.dockerfile
+    environment:
+      RABBIT_HOST: '192.168.1.1'
+
+  woma:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/Woma.Lab.dockerfile
     environment:
       RABBIT_HOST: '192.168.1.1'
       
