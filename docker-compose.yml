@@ -79,3 +79,4 @@ services:
       dockerfile: ./dockerfiles/Woma.dockerfile
     environment:
       RABBIT_HOST: 'rabbit'
+      WORKLOAD_FILE: './workload files/1userWorkLoad.txt'
